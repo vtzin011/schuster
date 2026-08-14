@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execução JS - Ultra Fast</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            /* Fundo animado variando entre tons de roxo escuro e preto */
+            background: linear-gradient(135deg, #0d001a, #1a0033, #000000, #2d004d, #0d001a);
+            background-size: 400% 400%;
+            animation: ultraFlow 8s ease infinite;
+            font-family: 'Segoe UI', sans-serif;
+            color: #f1f1f1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes ultraFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            /* Fundo preto profundo com transparência sutil */
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 25px;
+            max-width: 600px;
+            width: 100%;
+            /* Borda fina em roxo neon */
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            /* Sombra neon roxa */
+            box-shadow: 0 0 40px rgba(168, 85, 247, 0.15);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+
+            background: linear-gradient(to right, #ffffff, #c084fc);
+             -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .questao {
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-executar {
+            /* Botão roxo vibrante com texto preto */
+            background: #a855f7;
+            color: #000000;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 900;
+            text-transform: uppercase;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .btn-executar:hover {
+            transform: scale(1.02);
+            background: #b55fe6;
+            /* Brilho roxo ao passar o mouse */
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+        }
+
+        .output {
+            display: none;
+            margin-top: 10px;
+            padding: 12px;
+            background: #000000;
+            /* Texto do resultado em roxo claro neon */
+            color: #c084fc;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            border: 1px solid #a855f7;
+            animation: fadeIn 0.3s ease;
+            text-align: left;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Painel de Execução</h1>
+
+        <div class="questao">
+            <p>1. Apresentação de Ana</p>
+            <button class="btn-executar" onclick="executar(1)">Executar</button>
+            <div id="out-1" class="output"></div>
+        </div>
+
+        <div class="questao">
+            <p>2. Soma de 5 e 3</p>
+            <button class="btn-executar" onclick="executar(2)">Executar</button>
+            <div id="out-2" class="output"></div>
+        </div>
+
+        <div class="questao">
+            <p>3. Par ou Ímpar (7)</p>
+            <button class="btn-executar" onclick="executar(3)">Executar</button>
+            <div id="out-3" class="output"></div>
+        </div>
+
+        <div class="questao">
+            <p>4. Nota 6.5 - Status</p>
+            <button class="btn-executar" onclick="executar(4)">Executar</button>
+            <div id="out-4" class="output"></div>
+        </div>
+
+        <div class="questao">
+            <p>5. Idade 17 - Categoria</p>
+            <button class="btn-executar" onclick="executar(5)">Executar</button>
+            <div id="out-5" class="output"></div>
+        </div>
+
+        <div class="questao">
+            <p>6. Resultado subtrai(10, 4)</p>
+            <button class="btn-executar" onclick="executar(6)">Executar</button>
+            <div id="out-6" class="output"></div>
+        </div>
+
+        <div class="questao">
+            <p>7. Média Final Maria</p>
+            <button class="btn-executar" onclick="executar(7)">Executar</button>
+            <div id="out-7" class="output"></div>
+        </div>
+    </div>
+
+    <script>
+        function executar(q) {
+            const out = document.getElementById('out-' + q);
+            out.style.display = "block";
+            
+            const respostas = {
+                1: "Olá, meu nome é Ana e tenho 20 anos.",
+                2: "A soma de 5 e 3 é 8.",
+                3: "O número 7 é Ímpar.",
+                4: "Aluno Aprovado.",
+                5: "A pessoa é menor de idade.",
+                6: "Resultado: 6",
+                7: "A aluna Maria teve média 6 e está aprovada."
+            };
+            
+            out.innerText = "> " + respostas[q];
+        }
+    </script>
+</body>
+</html>
+

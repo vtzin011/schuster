@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade - Validação com Expressões Regulares</title>
+    <link rel="stylesheet" href="regex.css">
+</head>
+<body>
+    <header>
+        <h1>Validação com Expressões Regulares</h1>
+        <p>Atividade prática – Formulários HTML + JavaScript + Regex</p>
+    </header>
+
+    <div class="container">
+        <div class="nav-tabs" id="navTabs">
+            <button class="active" data-section="1">1. Nome</button>
+            <button data-section="2">2. Idade</button>
+            <button data-section="3">3. Senha</button>
+            <button data-section="4">4. CEP</button>
+            <button data-section="5">5. Telefone</button>
+            <button data-section="6">6. CPF</button>
+            <button data-section="7">7. Números</button>
+            <button data-section="8">8. Vogais</button>
+            <button data-section="9">9. Palavras</button>
+            <button data-section="10">10. Cadastro</button>
+            <button data-section="11">11. Analisador</button>
+        </div>
+
+        <!-- 1. NOME -->
+        <section class="section active" id="sec1">
+            <div class="card">
+                <h2>1. Validação de Nome</h2>
+                <p class="desc">Permite apenas letras (incluindo acentos) e espaços. Números ou símbolos tornam o nome inválido.</p>
+                <div class="form-group">
+                    <label for="nome">Digite um nome:</label>
+                    <input type="text" id="nome" placeholder="Ex: Maria Silva">
+                    <span class="erro-msg" id="nomeErro"></span>
+                </div>
+                <button class="btn" onclick="validarNome()">Validar Nome</button>
+                <div class="resultado" id="nomeResultado"></div>
+                <div class="exemplos">
+                    <strong>Exemplos:</strong><br>
+                    Maria Silva → Nome válido<br>
+                    Maria123 → Nome inválido<br>
+                    João! → Nome inválido
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. IDADE -->
+        <section class="section" id="sec2">
+            <div class="card">
+                <h2>2. Validação de Idade</h2>
+                <p class="desc">Aceita somente números inteiros. Qualquer letra ou símbolo torna a idade inválida.</p>
+                <div class="form-group">
+                    <label for="idade">Digite a idade:</label>
+                    <input type="text" id="idade" placeholder="Ex: 18">
+                    <span class="erro-msg" id="idadeErro"></span>
+                </div>
+                <button class="btn" onclick="validarIdade()">Validar Idade</button>
+                <div class="resultado" id="idadeResultado"></div>
+                <div class="exemplos">
+                    <strong>Exemplos:</strong><br>
+                    18 → Idade válida<br>
+                    18 anos → Idade inválida
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SENHA -->
+        <section class="section" id="sec3">
+            <div class="card">
+                <h2>3. Validação de Senha</h2>
+                <p class="desc">A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, uma minúscula e um número.</p>
+                <div class="form-group">
+                    <label for="senha">Digite a senha:</label>
+                    <input type="password" id="senha" placeholder="Ex: Abc12345">
+                    <span class="erro-msg" id="senhaErro"></span>
+                </div>
+                <button class="btn" onclick="validarSenha()">Validar Senha</button>
+                <div class="resultado" id="senhaResultado"></div>
+                <div class="exemplos">
+                    <strong>Exemplos:</strong><br>
+                    Abc12345 → Senha válida<br>
+                    abc12345 → Falta letra maiúscula<br>
+                    ABC12345 → Falta letra minúscula<br>
+                    Abcdefgh → Falta número
+                </div>
+            </div>
+        </section>
+
+       
+        <section class="section" id="sec4">
+            <div class="card">
+                <h2>4. Validação de CEP</h2>
+                <p class="desc">Aceita apenas os formatos: 99999-999 ou 99999999.</p>
+                <div class="form-group">
+                    <label for="cep">Digite o CEP:</label>
+                    <input type="text" id="cep" placeholder="Ex: 85884-000 ou 85884000">
+                    <span class="erro-msg" id="cepErro"></span>
+                </div>
+                <button class="btn" onclick="validarCEP()">Validar CEP</button>
+                <div class="resultado" id="cepResultado"></div>
+                <div class="exemplos">
+                    <strong>Exemplos válidos:</strong> 99999-999 ou 99999999
+                </div>
+            </div>
+        </section>
+
+        
+        <section class="section" id="sec5">
+            <div class="card">
+                <h2>5. Validação de Telefone</h2>
+                <p class="desc">Aceita os formatos: (45) 99999-9999 | 45999999999 | 45 99999-9999</p>
+                <div class="form-group">
+                    <label for="telefone">Digite o telefone:</label>
+                    <input type="text" id="telefone" placeholder="Ex: (45) 99999-9999">
+                    <span class="erro-msg" id="telefoneErro"></span>
+                </div>
+                <button class="btn" onclick="validarTelefone()">Validar Telefone</button>
+                <div class="resultado" id="telefoneResultado"></div>
+                <div class="exemplos">
+                    <strong>Formatos aceitos:</strong><br>
+                    (45) 99999-9999<br>
+                    45999999999<br>
+                    45 99999-9999
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="sec6">
+            <div class="card">
+                <h2>6. Validação de CPF (formato)</h2>
+                <p class="desc">Aceita somente: 123.456.789-00 ou 12345678900. Não verifica se o CPF existe de verdade.</p>
+                <div class="form-group">
+                    <label for="cpf">Digite o CPF:</label>
+                    <input type="text" id="cpf" placeholder="Ex: 123.456.789-00">
+                    <span class="erro-msg" id="cpfErro"></span>
+                </div>
+                <button class="btn" onclick="validarCPF()">Validar CPF</button>
+                <div class="resultado" id="cpfResultado"></div>
+                <div class="exemplos">
+                    <strong>Formatos aceitos:</strong> 123.456.789-00 ou 12345678900
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="sec7">
+            <div class="card">
+                <h2>7. Extrair Números da Frase</h2>
+                <p class="desc">Digite qualquer frase. O programa mostra todos os números encontrados.</p>
+                <div class="form-group">
+                    <label for="fraseNumeros">Digite uma frase:</label>
+                    <textarea id="fraseNumeros" placeholder="Ex: Hoje comprei 3 maçãs e 12 bananas."></textarea>
+                </div>
+                <button class="btn" onclick="extrairNumeros()">Extrair Números</button>
+                <div class="resultado" id="numerosResultado"></div>
+                <div class="exemplos">
+                    <strong>Exemplo:</strong> "Hoje comprei 3 maçãs e 12 bananas." → 3 e 12
+                </div>
+            </div>
+        </section>
+
+      
+        <section class="section" id="sec8">
+            <div class="card">
+                <h2>8. Contar Vogais</h2>
+                <p class="desc">Conta quantas vogais (incluindo acentuadas) existem na frase digitada.</p>
+                <div class="form-group">
+                    <label for="fraseVogais">Digite um texto:</label>
+                    <input type="text" id="fraseVogais" placeholder="Ex: Programação">
+                </div>
+                <button class="btn" onclick="contarVogais()">Contar Vogais</button>
+                <div class="resultado" id="vogaisResultado"></div>
+                <div class="exemplos">
+                    <strong>Exemplo:</strong> Programação → Quantidade de vogais: 5
+                </div>
+            </div>
+        </section>
+
+      
+        <section class="section" id="sec9">
+            <div class="card">
+                <h2>9. Contar Palavras</h2>
+                <p class="desc">Conta quantas palavras existem no texto usando Expressões Regulares.</p>
+                <div class="form-group">
+                    <label for="frasePalavras">Digite um texto:</label>
+                    <textarea id="frasePalavras" placeholder="Ex: Hoje está um lindo dia."></textarea>
+                </div>
+                <button class="btn" onclick="contarPalavras()">Contar Palavras</button>
+                <div class="resultado" id="palavrasResultado"></div>
+                <div class="exemplos">
+                    <strong>Exemplo:</strong> "Hoje está um lindo dia." → Quantidade de palavras: 5
+                </div>
+            </div>
+        </section>
+
+    
+        <section class="section" id="sec10">
+            <div class="card">
+                <h2>10. Página de Cadastro Completo</h2>
+                <p class="desc">Todos os campos são validados com Regex. O cadastro só é concluído se tudo estiver correto. Campos inválidos ficam em vermelho.</p>
+                <form id="formCadastro" novalidate>
+                    <div class="form-group">
+                        <label for="cadNome">Nome</label>
+                        <input type="text" id="cadNome" placeholder="Apenas letras e espaços">
+                        <span class="erro-msg" id="cadNomeErro"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cadEmail">E-mail</label>
+                        <input type="email" id="cadEmail" placeholder="seu@email.com">
+                        <span class="erro-msg" id="cadEmailErro"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cadTelefone">Telefone</label>
+                        <input type="text" id="cadTelefone" placeholder="(45) 99999-9999">
+                        <span class="erro-msg" id="cadTelefoneErro"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cadCEP">CEP</label>
+                        <input type="text" id="cadCEP" placeholder="99999-999">
+                        <span class="erro-msg" id="cadCEPErro"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cadSenha">Senha</label>
+                        <input type="password" id="cadSenha" placeholder="Mín. 8 chars, maiúscula, minúscula e número">
+                        <span class="erro-msg" id="cadSenhaErro"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="cadConfirmar">Confirmar Senha</label>
+                        <input type="password" id="cadConfirmar" placeholder="Repita a senha">
+                        <span class="erro-msg" id="cadConfirmarErro"></span>
+                    </div>
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+                </form>
+                <div class="resultado" id="cadastroResultado"></div>
+            </div>
+        </section>
+
+        
+        <section class="section" id="sec11">
+            <div class="card">
+                <h2>11. Analisador de Texto</h2>
+                <p class="desc">Digite qualquer frase e o sistema informa: letras, números, palavras, vogais, espaços e caracteres especiais.</p>
+                <div class="form-group">
+                    <label for="textoAnalise">Digite qualquer texto:</label>
+                    <textarea id="textoAnalise" placeholder="Digite aqui sua frase para análise..."></textarea>
+                </div>
+                <button class="btn" onclick="analisarTexto()">Analisar Texto</button>
+                <div class="resultado info" id="analiseResultado">
+                    <div class="stats-grid" id="statsGrid"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        Atividade de Expressões Regulares • HTML + CSS + JavaScript
+    </footer>
+
+    <script src="regex.js"></script>
+</body>
+</html>

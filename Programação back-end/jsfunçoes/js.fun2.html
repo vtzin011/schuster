@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funçoes JaVascript 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .painel-botoes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        button {
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #4338ca;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Painel de Questões Original</h1>
+    
+    <div class="painel-botoes">
+        <button onclick="rodarQuestao1()">Questão 1: Situação do Aluno</button>
+        <button onclick="rodarQuestao2()">Questão 2: Verificar Idade</button>
+        <button onclick="rodarQuestao3()">Questão 3: Calculadora</button>
+        <button onclick="rodarQuestao4()">Questão 4: Cálculo de Desconto</button>
+        <button onclick="rodarQuestao5()">Questão 5: Par ou Ímpar</button>
+        <button onclick="rodarQuestao6()">Questão 6: Sistema de Login</button>
+        <button onclick="rodarQuestao7()">Questão 7: Temperatura Regional</button>
+    </div>
+
+    <script>
+       
+
+        function situacaoAluno(nome,nota) {
+            if (nota >= 7){
+                return `${nome} foi Aprovado`
+            }else if (nota >= 5 && nota < 6.9 ){
+                return `${nome} esta de recuperação`
+            }else if (nota < 5){
+                return `${nome} esta reprovado`
+            }else {
+                return `Nota não calculada`
+            }
+        }
+
+        function verificarIdade(nome,idade){
+            if (idade <= 12){
+                return `${nome} é criança`
+            }else if (idade >= 13 && idade <= 17){
+                return `${nome} é adolescente`
+            }else if (idade >= 18 && idade <= 59){
+                return `${nome} é adulto(a)`
+            }else if (idade >= 60){
+                return `${nome} é velho(a)`
+            }
+        }
+
+        function calculadora(n1,n2,op){
+            if (op == "+"){
+                return n1 + n2
+            }else if (op == "-"){
+                return n1 - n2
+            }else if (op == "*"){
+                return n1 * n2
+            }else if (op == "/"){
+                return n1 / n2
+            }else{
+                return `Operação não encontrada`
+            }
+        }
+
+        function desconto(nome,valor){
+            if (valor >= 500){
+                return `você teve 20$ de desconto, ${valor - (0.2 * valor)}`
+            }else if (valor >= 200 ){
+                return `você teve 10$ de desconto, ${valor - (0.1 * valor)}`
+            }else {
+                return `você não teve desconto`
+            }
+        }
+
+        function parOuImpar(num){
+            if (num % 2 == 0){
+                return `O ${num} é par`
+            }else{
+                return `O ${num} é ímpar`
+            }
+        }
+
+        function login(usuario,senha){
+            if (usuario == "admin" && senha == "1234"){
+                return `Acesso permitido`
+            }else if (usuario == "admin" && senha != "1234"){
+                return `senha incorreta`
+            }else{
+                return `Acesso negado`
+            }
+        }
+
+        function temperatura(cidade,temp){
+            if (temp <= 15){
+                return `${cidade} muito frio tche`
+            }else if (temp > 15 && temp <= 25){
+                return `${cidade} morno piá`
+            }else {
+                return `${cidade} esta pelando tche`
+            }
+        }
+
+
+       
+        let cachorro = ""; 
+
+        function rodarQuestao1() {
+            cachorro = prompt("Digite seu nome \n")
+            let caramelo = Number(prompt("Digite a sua nota, \n (de 0 a 10)\n"))
+            alert(situacaoAluno(cachorro,caramelo))
+        }
+
+        function rodarQuestao2() {
+            // Garante que tenha um nome caso o usuário clique direto na Q2
+            if(!cachorro) cachorro = prompt("Digite seu nome \n") 
+            let puto = Number(prompt("Digite sua idade \n"))
+            alert(verificarIdade(cachorro,puto))
+        }
+
+        function rodarQuestao3() {
+            let porta = Number(prompt("Digite o primeiro número \n"))
+            let avião = Number(prompt("Digite o outro número \n"))
+            let network = prompt("Digite a operação (+ - * /) \n")
+            alert(calculadora(porta,avião,network))
+        }
+
+        function rodarQuestao4() {
+            if(!cachorro) cachorro = prompt("Digite seu nome \n")
+            let abdusido= Number(prompt("Digite o valor de sua compra \n"))
+            alert(`O valor de sua compra era de ${abdusido}R$, então ${desconto(cachorro,abdusido)}`)
+        }
+
+        function rodarQuestao5() {
+            let ET= Number(prompt("Digite um número,\n veremos se ele é par ou ímpar \n"))
+            alert(parOuImpar(ET))
+        }
+
+        function rodarQuestao6() {
+            let toca= prompt("Digite o seu usuário \n")
+            let cagado = prompt("Digite sua senha \n")
+            alert(login(toca,cagado))
+        }
+
+        function rodarQuestao7() {
+            let chupeta = prompt("Digite sua cidade \n")
+            let nenem = Number(prompt("Digite a temperatura \n"))
+            alert(temperatura(chupeta,nenem))
+        }
+    </script>
+</body>
+</html>
