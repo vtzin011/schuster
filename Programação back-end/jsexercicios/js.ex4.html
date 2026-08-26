@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #cba6f7;
+            margin-bottom: 25px;
+        }
+
+        .painel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 1000px;
+        }
+
+       
+        .card {
+            background-color: #313244;
+            border: 1px solid #45475a;
+            border-radius: 12px;
+            padding: 20px;
+            width: 240px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #89b4fa;
+            border-bottom: 1px solid #45475a;
+            padding-bottom: 8px;
+        }
+
+       
+        button {
+            background-color: #a6e3a1;
+            color: #11111b;
+            border: none;
+            padding: 10px 15px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #94e2d5;
+        }
+
+        .resposta {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #181825;
+            border-radius: 6px;
+            min-height: 40px;
+            font-size: 0.9rem;
+            color: #a6adc8;
+            border-left: 4px solid #fab387;
+            text-align: left;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Painel de Testes POO</h1>
+
+    <div class="painel">
+       
+        <div class="card">
+            <h3>Classe: Pessoa</h3>
+            <button onclick="executarPessoa()">Executar</button>
+            <div class="resposta" id="res-pessoa">Clique para ver...</div>
+        </div>
+
+        <div class="card">
+            <h3>Classe: Aluno</h3>
+            <button onclick="executarAluno()">Executar</button>
+            <div class="resposta" id="res-aluno">Clique para ver...</div>
+        </div>
+
+        <div class="card">
+            <h3>Classe: People</h3>
+            <button onclick="executarPeople()">Executar</button>
+            <div class="resposta" id="res-people">Clique para ver...</div>
+        </div>
+
+        <div class="card">
+            <h3>Classe: Carro</h3>
+            <button onclick="executarCarro()">Executar</button>
+            <div class="resposta" id="res-carro">Clique para ver...</div>
+        </div>
+
+        <div class="card">
+            <h3>Classes: Animais</h3>
+            <button onclick="executarAnimais()">Executar</button>
+            <div class="resposta" id="res-animais">Clique para ver...</div>
+        </div>
+    </div>
+
+    <script>
+
+ class Pessoa {
+     constructor(nome, idade) {
+         this.nome = nome;
+         this.idade = idade;
+     }
+ }
+ let pessoa1 = new Pessoa("Victor", 18);
+
+ class Aluno {
+     constructor(nome, nota) {
+         this.nome = nome;
+         this.nota = nota;
+     }
+ }
+ let aluno1 = new Aluno("andressa", 10);
+ let aluno2 = new Aluno("francinilde", 9.9);
+
+ class People {
+     constructor(nome){
+         this.nome = nome;
+     }
+     apresentar(){
+        
+         return `Olá me chamo ${this.nome}`;
+     }
+ }
+ let pessoa3 = new People("Vilma");
+
+ class Carro {
+     constructor(marca, modelo){
+         this.marca = marca;
+         this.modelo = modelo;
+     }
+     mostrarInformacoes(){
+        
+         return `A marca do carro é ${this.marca}, e o modelo ${this.modelo}`;
+     }
+ }
+ let carro1 = new Carro("Uno", "Com Escada")
+
+class Animal {
+    constructor(nome) {
+        this.nome = nome;
+    }
+    fazerSom() {
+        return "O animal faz um som";
+    }
+}
+class Cachorro extends Animal {
+    fazerSom() {
+        return "Au au!";
+    }
+}
+class Gato extends Animal {
+     fazerSom() {
+         return "Miau!"
+     }
+}    
+let cachorro1 = new Cachorro("cezar");
+let gato1 = new Gato("alfredo")
+
+
+
+function executarPessoa() {
+    document.getElementById('res-pessoa').innerHTML = `Nome: ${pessoa1.nome} <br> Idade: ${pessoa1.idade}`;
+}
+
+function executarAluno() {
+    document.getElementById('res-aluno').innerHTML = 
+        `Nome: ${aluno1.nome} | Nota: ${aluno1.nota} <br><br> Nome: ${aluno2.nome} | Nota: ${aluno2.nota}`;
+}
+
+function executarPeople() {
+    document.getElementById('res-people').innerHTML = pessoa3.apresentar();
+}
+
+function executarCarro() {
+    document.getElementById('res-carro').innerHTML = carro1.mostrarInformacoes();
+}
+
+function executarAnimais() {
+    document.getElementById('res-animais').innerHTML = 
+        `O nome do cachorro é <b>${cachorro1.nome}</b> e ele faz: ${cachorro1.fazerSom()} <br><br> ` +
+        `O nome do Gato é <b>${gato1.nome}</b> e ele faz: ${gato1.fazerSom()}`;
+}
+
+    </script>
+</body>
+</html>
