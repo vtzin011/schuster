@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int main() {
-    // Variáveis para os exercícios
+    
     char nome[100], cidade[100];
     int idade, n1_int, n2_int, num, qtd, horas;
     float n1_float, n2_float, nota1, nota2, nota3, media;
@@ -14,7 +14,7 @@ int main() {
     printf("Digite sua idade: ");
     scanf("%d", &idade);
     printf("Digite sua altura (ex: 1.75): ");
-    scanf("%f", &altura_ret); // Usando temporariamente para ler altura do aluno
+    scanf("%f", &altura_ret);
     printf("Digite sua cidade: ");
     scanf(" %[^\n]", cidade);
     
