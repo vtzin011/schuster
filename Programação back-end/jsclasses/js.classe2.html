@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios POO</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg: #202024;
+            --primary-color: #8257e5;
+            --text-color: #e1e1e6;
+            --output-bg: #121214;
+            --highlight: #04d361;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .output {
+            background-color: var(--output-bg);
+            color: #a8a8b3;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            white-space: pre-line;
+            border: 1px solid #29292e;
+        }
+
+        .output span {
+            color: var(--highlight);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Exercícios POO</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>Exercício 1</h3>
+            <div class="output" id="ex1"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 2</h3>
+            <div class="output" id="ex2"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 3</h3>
+            <div class="output" id="ex3"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 4</h3>
+            <div class="output" id="ex4"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 5</h3>
+            <div class="output" id="ex5"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 6</h3>
+            <div class="output" id="ex6"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 7</h3>
+            <div class="output" id="ex7"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 8</h3>
+            <div class="output" id="ex8"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 9</h3>
+            <div class="output" id="ex9"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 10</h3>
+            <div class="output" id="ex10"></div>
+        </div>
+
+    </div>
+
+    <script>
+        function render(id, text) {
+            document.getElementById(id).innerHTML += text + "\n";
+            console.log(text.replace(/<[^>]*>/g, ''));
+        }
+
+       
+        class Pessoa {
+            constructor(nome, idade) {
+                this.nome = nome;
+                this.idade = idade;
+            }
+            apresentar() {
+                render("ex1", `Olá, meu nome é <span>${this.nome}</span> e tenho <span>${this.idade}</span> anos.`);
+            }
+        }
+        const p1 = new Pessoa("Thiago", 31);
+        p1.apresentar();
+
+        
+        class Aluno {
+            constructor(nome, curso) {
+                this.nome = nome;
+                this.curso = curso;
+            }
+            estudar() {
+                render("ex2", `O aluno <span>${this.nome}</span> está estudando no curso de <span>${this.curso}</span>.`);
+            }
+        }
+        const a1 = new Aluno("Mariana", "Engenharia de Software");
+        a1.estudar();
+
+      
+        class Professor {
+            constructor(nome, disciplina) {
+                this.nome = nome;
+                this.disciplina = disciplina;
+            }
+            ensinar() {
+                render("ex3", `O professor <span>${this.nome}</span> está ensinando <span>${this.disciplina}</span>.`);
+            }
+        }
+        const prof = new Professor("Ricardo", "Banco de Dados");
+        prof.ensinar();
+
+       
+        class Veiculo {
+            constructor(marca, modelo) {
+                this.marca = marca;
+                this.modelo = modelo;
+            }
+            mostrarInformacoes() {
+                render("ex4", `Veículo: <span>${this.marca} ${this.modelo}</span>`);
+            }
+        }
+        const v1 = new Veiculo("Chevrolet", "Onix");
+        v1.mostrarInformacoes();
+
+       
+        class Carro extends Veiculo {
+            constructor(marca, modelo, quantidadePortas) {
+                super(marca, modelo);
+                this.quantidadePortas = quantidadePortas;
+            }
+            mostrarPortas() {
+                render("ex5", `Quantidade de portas: <span>${this.quantidadePortas}</span>`);
+            }
+        }
+        const c1 = new Carro("Toyota", "Yaris", 4);
+        c1.mostrarInformacoes();
+        c1.mostrarPortas();
+
+      
+        class Animal {
+            constructor(nome) {
+                this.nome = nome;
+            }
+            emitirSom() {
+                render("ex6", `O animal <span>${this.nome}</span> emitiu um som genérico.`);
+            }
+        }
+        class Cachorro extends Animal {
+            latir() {
+                render("ex6", `O cachorro <span>${this.nome}</span> está latindo: Au au!`);
+            }
+        }
+        const dog = new Cachorro("Max");
+        dog.emitirSom();
+        dog.latir();
+
+        // Exercício 7: Gato
+        class Gato extends Animal {
+            miar() {
+                render("ex7", `O gato <span>${this.nome}</span> está miando: Miau!`);
+            }
+        }
+        const cat = new Gato("Luna");
+        cat.emitirSom();
+        cat.miar();
+
+      
+        class Funcionario {
+            constructor(nome, salario) {
+                this.nome = nome;
+                this.salario = salario;
+            }
+            mostrarDados() {
+                render("ex8", `Funcionário: <span>${this.nome}</span> | Salário: R$ <span>${this.salario}</span>`);
+            }
+        }
+        class Gerente extends Funcionario {
+            constructor(nome, salario, setor) {
+                super(nome, salario);
+                this.setor = setor;
+            }
+            mostrarSetor() {
+                render("ex8", `Setor do Gerente: <span>${this.setor}</span>`);
+            }
+        }
+        const ger = new Gerente("Beatriz", 9200, "Projetos");
+        ger.mostrarDados();
+        ger.mostrarSetor();
+
+       
+        class ContaBancaria {
+            constructor(titular, saldo) {
+                this.titular = titular;
+                this.saldo = saldo;
+            }
+            depositar(valor) {
+                this.saldo += valor;
+            }
+            mostrarSaldo() {
+                render("ex9", `Titular: <span>${this.titular}</span> | Saldo: R$ <span>${this.saldo}</span>`);
+            }
+        }
+        class ContaPoupanca extends ContaBancaria {
+            constructor(titular, saldo, taxa) {
+                super(titular, saldo);
+                this.taxa = taxa;
+            }
+            mostrarTaxa() {
+                render("ex9", `Taxa de rendimento: <span>${this.taxa}%</span>`);
+            }
+        }
+        const conta = new ContaPoupanca("Bruno", 2500, 0.65);
+        conta.depositar(750);
+        conta.mostrarSaldo();
+        conta.mostrarTaxa();
+
+        class Personagem {
+            constructor(nome, vida) {
+                this.nome = nome;
+                this.vida = vida;
+            }
+            mostrarStatus() {
+                render("ex10", `Nome: <span>${this.nome}</span> | Vida: <span>${this.vida}</span>`);
+            }
+        }
+        class Guerreiro extends Personagem {
+            constructor(nome, vida, arma) {
+                super(nome, vida);
+                this.arma = arma;
+            }
+            atacar() {
+                render("ex10", `O Guerreiro <span>${this.nome}</span> atacou usando <span>${this.arma}</span>!`);
+            }
+        }
+        class Mago extends Personagem {
+            constructor(nome, vida, magia) {
+                super(nome, vida);
+                this.magia = magia;
+            }
+            lancarMagia() {
+                render("ex10", `O Mago <span>${this.nome}</span> lançou a magia <span>${this.magia}</span>!`);
+            }
+        }
+        const p_guerreiro = new Guerreiro("Ragnar", 120, "Machado de Batalha");
+        const p_mago = new Mago("Gandalf", 90, "Luz Sagrada");
+        p_guerreiro.mostrarStatus();
+        p_guerreiro.atacar();
+        p_mago.mostrarStatus();
+        p_mago.lancarMagia();
+    </script>
+</body>
+</html>

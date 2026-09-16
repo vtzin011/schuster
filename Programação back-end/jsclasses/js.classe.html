@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios POO</title>
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg: #202024;
+            --primary-color: #8257e5;
+            --text-color: #e1e1e6;
+            --output-bg: #121214;
+            --highlight: #04d361;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .output {
+            background-color: var(--output-bg);
+            color: #a8a8b3;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            white-space: pre-line;
+            border: 1px solid #29292e;
+        }
+
+        .output span {
+            color: var(--highlight);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Exercícios POO</h1>
+
+    <div class="container">
+
+        <div class="card">
+            <h3>Exercício 1</h3>
+            <div class="output" id="ex1"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 2</h3>
+            <div class="output" id="ex2"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 3</h3>
+            <div class="output" id="ex3"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 4</h3>
+            <div class="output" id="ex4"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 5</h3>
+            <div class="output" id="ex5"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 6</h3>
+            <div class="output" id="ex6"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 7</h3>
+            <div class="output" id="ex7"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 8</h3>
+            <div class="output" id="ex8"></div>
+        </div>
+
+        <div class="card">
+            <h3>Exercício 9</h3>
+            <div class="output" id="ex9"></div>
+        </div>
+
+    </div>
+
+    <script>
+        function render(id, text) {
+            document.getElementById(id).innerHTML = text;
+            console.log(text.replace(/<[^>]*>/g, ''));
+        }
+
+        // 1
+        class Pessoa {
+            constructor(nome, idade) {
+                this.nome = nome;
+                this.idade = idade;
+            }
+        }
+        const p1 = new Pessoa("Roberto", 34);
+        render("ex1", `Nome: <span>${p1.nome}</span>\nIdade: <span>${p1.idade}</span>`);
+
+        // 2
+        class Aluno {
+            constructor(nome, nota) {
+                this.nome = nome;
+                this.nota = nota;
+            }
+        }
+        const a1 = new Aluno("Gabriela", 9.5);
+        const a2 = new Aluno("Fernanda", 7.0);
+        render("ex2", `Aluno: <span>${a1.nome}</span> - Nota: <span>${a1.nota}</span>\nAluno: <span>${a2.nome}</span> - Nota: <span>${a2.nota}</span>`);
+
+        // 3
+        class PessoaApresentar {
+            constructor(nome) {
+                this.nome = nome;
+            }
+            apresentar() {
+                return `Olá, meu nome é <span>${this.nome}</span>.`;
+            }
+        }
+        const p3 = new PessoaApresentar("Ricardo");
+        render("ex3", p3.apresentar());
+
+        // 4
+        class Carro {
+            constructor(marca, modelo) {
+                this.marca = marca;
+                this.modelo = modelo;
+            }
+            mostrarInformacoes() {
+                return `Carro: <span>${this.marca} ${this.modelo}</span>`;
+            }
+        }
+        const c1 = new Carro("Ford", "Mustang");
+        render("ex4", c1.mostrarInformacoes());
+
+        // 5
+        class Animal {
+            constructor(nome) {
+                this.nome = nome;
+            }
+            fazerSom() {
+                return "O animal está fazendo um som.";
+            }
+        }
+        const anim = new Animal("Bicho");
+        render("ex5", anim.fazerSom());
+
+        // 6
+        class CachorroHeranca extends Animal {
+            constructor(nome) {
+                super(nome);
+            }
+        }
+        const dog1 = new CachorroHeranca("Thor");
+        render("ex6", `Nome do cachorro: <span>${dog1.nome}</span>`);
+
+        // 7
+        class AnimalSom {
+            fazerSom() {}
+        }
+        class Cachorro extends AnimalSom {
+            fazerSom() { return "Au au!"; }
+        }
+        class Gato extends AnimalSom {
+            fazerSom() { return "Miau!"; }
+        }
+        const cao = new Cachorro();
+        const gato = new Gato();
+        render("ex7", `<span>${cao.fazerSom()}</span>\n<span>${gato.fazerSom()}</span>`);
+
+        // 8
+        class Veiculo {
+            constructor(marca, ano) {
+                this.marca = marca;
+                this.ano = ano;
+            }
+        }
+        class CarroTipo extends Veiculo {
+            mostrarTipo() { return "Este veículo é um carro."; }
+        }
+        class MotoTipo extends Veiculo {
+            mostrarTipo() { return "Este veículo é uma moto."; }
+        }
+        const car = new CarroTipo("Chevrolet", 2025);
+        const moto = new MotoTipo("Kawasaki", 2024);
+        render("ex8", `<span>${car.mostrarTipo()}</span>\n<span>${moto.mostrarTipo()}</span>`);
+
+        // 9
+        class PessoaBase {
+            constructor(nome, idade) {
+                this.nome = nome;
+                this.idade = idade;
+            }
+        }
+        class AlunoFilho extends PessoaBase {
+            constructor(nome, idade, turma) {
+                super(nome, idade);
+                this.turma = turma;
+            }
+        }
+        class ProfessorFilho extends PessoaBase {
+            constructor(nome, idade, disciplina) {
+                super(nome, idade);
+                this.disciplina = disciplina;
+            }
+        }
+        const alu = new AlunoFilho("Felipe", 15, "1º Ano B");
+        const prof = new ProfessorFilho("Marcos", 38, "História");
+        render("ex9", `Aluno: <span>${alu.nome}</span>, Idade: <span>${alu.idade}</span>, Turma: <span>${alu.turma}</span>\nProfessor: <span>${prof.nome}</span>, Idade: <span>${prof.idade}</span>, Disciplina: <span>${prof.disciplina}</span>`);
+    </script>
+</body>
+</html>
